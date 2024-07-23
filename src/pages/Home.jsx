@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from './Layout'
 import img1 from '../assets/images/img4.svg'
-import img2 from '../assets/images/img3.svg'
 import img9 from '../assets/images/img6.svg'
 import img7 from '../assets/images/img7.svg'
 import img6 from '../assets/images/img8.svg'
