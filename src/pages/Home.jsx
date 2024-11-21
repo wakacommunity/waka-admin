@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import Layout from './Layout'
 import img1 from '../assets/images/img4.svg'
 import img9 from '../assets/images/img6.svg'
-import img7 from '../assets/images/img7.svg'
 import img6 from '../assets/images/img8.svg'
 import img3 from '../assets/images/img9.svg'
 import img5 from '../assets/images/img10.svg'
@@ -30,7 +29,7 @@ const Home = () => {
                     {
                         img: img9,
                         title: `Total Advert Revenue`,
-                        amount: result.merchant
+                        amount: result.adverts
                     }, 
                     {
                         img: img3,
@@ -53,9 +52,9 @@ const Home = () => {
                         amount: result.total_products_purchased
                     },
                     {
-                        img: img7,
-                        title: `total products`,
-                        amount: result.total_products_product
+                        img: img9,
+                        title: `Advert Revenue for this month`,
+                        amount: result.advertsmonth
                     },
                     {
                         img: img5,
@@ -65,7 +64,7 @@ const Home = () => {
                     {
                         img: img9,
                         title: `total adverts`,
-                        amount: result.adverts
+                        amount: result.adverts_count
                     },
                 ])
             }catch (error) {

@@ -1,10 +1,15 @@
-import React, { useRef, useState } from 'react'
+import  { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Alerter } from '../../components/Utils'
 import Formbutton from '../../components/Formbutton'
 import { Api, Deleteurl, Posturl } from '../../components/Api'
 import ConfirmModal from '../../components/ConfirmModal'
 import { FaTimes } from 'react-icons/fa'
+import PropTypes from 'prop-types'
+
+// BlogForm.propTypes = {
+//     blogData: PropTypes.string,
+// }
 
 const BlogForm = ({ blogData }) => {
     const navigate = useNavigate()

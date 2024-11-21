@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import img from '../assets/images/img14.png'
+import { useCallback, useEffect, useState } from 'react'
 import Layout from './Layout'
 import Pagination from '../components/Pagination'
 import { Api, Geturl } from '../components/Api'
@@ -12,14 +11,13 @@ import { useSearchParams } from 'react-router-dom'
 const Posts = () => {
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState([])
-    const [search, setSearch] = useState('')
     const [params, setParams] = useSearchParams()
     const [list, setList] = useState({})
     const [single, setSingle] = useState({
         status: false,
     })
-    const [main, setMain] = useState([])
-    const [text, setText] = useState('There are no records found!...')
+    const [, setMain] = useState([])
+    const [, setText] = useState('There are no records found!...')
     const FetchUsers = useCallback(async () => {
         // setLoading(true)
         setText('')
@@ -58,17 +56,17 @@ const Posts = () => {
         })
         try {
             if(single.tag === 'approve') {
-                const res = await Geturl(`${Api.wakashare.approve_waka}/${single.id}`)
+                await Geturl(`${Api.wakashare.approve_waka}/${single.id}`)
                 FetchUsers()
                 return Alerter('success', `Waka Approved successfully`)
             }
             if(single.tag === 'unapprove') {
-                const res = await Geturl(`${Api.wakashare.unapprove_waka}/${single.id}`)
+                await Geturl(`${Api.wakashare.unapprove_waka}/${single.id}`)
                 FetchUsers()
                 return Alerter('success', `Waka Unapproved successfully`)
             }
             if(single.tag === 'delete') {
-                const res = await Geturl(`${Api.wakashare.delete_wakashare}/${single.id}`)
+                await Geturl(`${Api.wakashare.delete_wakashare}/${single.id}`)
                 FetchUsers()
                 return Alerter('success', `Waka Deleted successfully`)
             }
@@ -81,6 +79,7 @@ const Posts = () => {
             })
         }
     }
+
     return (
         <Layout>
           {single.status &&  <ConfirmModal 
@@ -99,18 +98,18 @@ const Posts = () => {
                                     <img src={item.images[0]} alt="" className='w-[13rem] h-[16rem] object-cover border rounded-lg border-mainblack' />
                                 </div>
                                 <div className="flex flex-col w-11/12 gap-1 mx-auto lg:col-span-2">
-                                  {item.approval === '0' &&  <button 
+                                  {item.approval === 0 &&  <button 
                                     onClick={() => handleModal({title: 'Are you sure you want to approve this waka post', id: item.id, tag: 'approve'})}
                                     className="w-full py-3 capitalize rounded-lg bg-mainyellow">approve</button>}
 
-                                  {item.approval === '1' &&  <button 
+                                  {item.approval === 1 &&  <button 
                                     onClick={() => handleModal({title: 'Are you sure you want to unapprove this waka post', id: item.id, tag: 'unapprove'})}
                                     className="w-full py-3 capitalize rounded-lg bg-mainyellow">unapprove</button>}
 
                                     <button 
                                     onClick={() => handleModal({title: 'Are you sure you want to delete this waka post', id: item.id, tag: 'delete'})}
                                     className="w-full py-3 text-white capitalize rounded-lg bg-mainblack">delete</button>
-                                    <button className="w-full py-3 capitalize rounded-lg bg-mainyellow">comment by {item.customer?.username}</button>
+                                    <button className="w-full py-3 capitalize rounded-lg bg-mainyellow">post by {item.customer?.username}</button>
                                 </div>
                             </div>
                         </div>

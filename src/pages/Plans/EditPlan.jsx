@@ -15,8 +15,8 @@ const EditPlan = () => {
       setLoading(true)
       try {
         const response = await Geturl(Api.plans.lists)
-        if(response.message === 'successful') {
-          const findData = response.data.find(ele => ele.id === parseInt(id))
+        if(response.data?.length > 0) {
+          const findData = response.data.find(ele => ele.id.toString() === id)
           if(findData) return setData(findData)
         }
       } catch (error) {
@@ -26,7 +26,8 @@ const EditPlan = () => {
       }
     }
     FetchPlan()
-  }, [])
+  }, [id])
+
   return (
     <Layout>
       {loading && <div className="text-center mt-10 text-xl">Loading content....</div> }

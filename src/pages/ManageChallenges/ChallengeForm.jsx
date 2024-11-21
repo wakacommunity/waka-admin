@@ -1,6 +1,6 @@
 
 
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Api, Posturl } from '../../components/Api'
 import { Alerter } from '../../components/Utils'
 import Formbutton from '../../components/Formbutton'

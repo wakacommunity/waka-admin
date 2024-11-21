@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Layout from './Layout'
-import img1 from '../assets/images/img11.svg'
 import Pagination from '../components/Pagination'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Api, Geturl } from '../components/Api'
@@ -10,9 +9,8 @@ import Filter from '../components/Filter'
 const Users = () => {
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState({})
-    const [search, setSearch] = useState('')
     const [params, setParams] = useSearchParams()
-    const [main, setMain] = useState([])
+    const [, setMain] = useState([])
     const [text, setText] = useState('There are no records found!...')
     const FetchUsers = useCallback(async (tags) => {
         setLoading(true)
@@ -36,13 +34,17 @@ const Users = () => {
     
 
     const sendFilter = ele => {
-        FetchUsers(ele)
+        if(ele === 'all') {
+            return FetchUsers()
+        }
+        return FetchUsers(ele)
     }
     return (
         <Layout>
             <div className="py-10">
                 <Filter
-                    showFilters={["search"]}
+                    loadSearch={true}
+                    placeholder={'Search Users here...'}
                     sendFilter={sendFilter}
                 />
                 <div className="w-full mt-10 overflow-x-auto">
