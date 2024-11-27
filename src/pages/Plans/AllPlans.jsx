@@ -96,7 +96,7 @@ const AllPlans = () => {
             <div className="">
                 <div className="">
                     <Filter 
-                    link=""
+                    link="/plans/new"
                     dropdownTitle={`ad plan`}
                     linkTitle={`add new plan`}
                     placeholder={`Search Price`}

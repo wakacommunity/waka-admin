@@ -25,11 +25,11 @@ export default function ChallengeModal({ data, onclose }) {
                     </div>
                     <div className="border rounded-lg p-2">
                         <div className="font-thin text-sm">Challenge Start date</div>
-                        <div className="uppercase">{moment(new Date(data.start_date)).format('DD-MM-YYY')}</div>
+                        <div className="uppercase">{moment(new Date(data.start_date)).format('DD-MM-YYYY')}</div>
                     </div>
                     <div className="border rounded-lg p-2">
                         <div className="font-thin text-sm">Challenge End date</div>
-                        <div className="uppercase">{moment(new Date(data.end_date)).format('DD-MM-YYY')}</div>
+                        <div className="uppercase">{moment(new Date(data.end_date)).format('DD-MM-YYYY')}</div>
                     </div>
                 </div>
                 <img src={data.image} alt="" className="block w-full h-[30rem] object-contain bg-black" />
