@@ -5,6 +5,7 @@ import { Api, Deleteurl, Geturl } from '../components/Api'
 import { Alerter } from '../components/Utils'
 import { FaArrowLeft } from 'react-icons/fa6'
 import ConfirmModal from '../components/ConfirmModal'
+import moment from 'moment'
 
 const SingleUser = () => {
     const { id } = useParams()
@@ -13,16 +14,16 @@ const SingleUser = () => {
     const [data, setData] = useState({})
     const [view, setView] = useState(false)
     const [loads, setLoads] = useState(false)
+    const [analysis, setAnalysis] = useState([])
 
     useEffect(() => {
         const FetchUsers = async () => {
             setLoading(true)
             try {
-                const res = await Geturl(Api.customers.list)
-                if (res.message === "success") {
-                    const resolve = res.data.find(ele => ele.id === parseInt(id))
-                    return setData(resolve)
-                }
+                const res = await Geturl(`${Api.customers.single}/${id}`)
+                const returnData = await Geturl(`${Api.wakashare.user}?customer_id=${id}`)
+                setAnalysis(returnData.comments?.data)
+                return setData(res.data)
             } catch (error) {
                 return Alerter('error', `${error}`)
             } finally {
@@ -92,6 +93,13 @@ const SingleUser = () => {
                         <div className="col-span-2 rounded-lg p-5 capitalize bg-mainyellow">weight</div>
                         <div className="col-span-5 rounded-lg p-5 bg-mainyellow">{data.weight}</div>
                     </div>
+                    <div className="font-bold text-xl mt-6 mb-3">Waka Steps</div>
+                    {analysis.map((item, index) => (
+                        <div className="grid grid-cols-7 gap-3 mb-2.5" key={index}>
+                        <div className="col-span-2 rounded-lg p-2 capitalize">{moment(item.createdAt).format('Do MMM YYYY')}</div>
+                        <div className="col-span-5 rounded-lg p-2 font-bold text-xl text-right">{parseFloat(item.steps)?.toLocaleString()}</div>
+                    </div>
+                    ))}
                     <div className="grid grid-cols-7 gap-3 mb-2.5">
                         <div className="col-span-2 rounded-lg p-5 capitalize bg-mainyellow">Make Admin</div>
                         <div className="col-span-5 rounded-lg p-3">

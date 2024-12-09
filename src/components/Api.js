@@ -18,6 +18,7 @@ const auth_urls = {
 const customer_urls = {
     list: `admin/customer/list`,
     delete: `admin/customer/delete`,
+    single: `admin/customer/single`,
 }
 const ads_urls = {
     list: `admin/advertisment/list`,
@@ -38,6 +39,7 @@ const blog_urls = {
 }
 const wakashare_urls = {
     lists: `admin/wakashare/list`,
+    user: `admin/waka/list-admin-waka`,
     comment_lists: `admin/wakashare/comment-list`,
     approve_waka: `admin/wakashare/approve`,
     unapprove_waka: `admin/wakashare/unapprove`,
