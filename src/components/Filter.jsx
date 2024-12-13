@@ -7,24 +7,11 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import PropTypes from 'prop-types';
 dayjs.extend(customParseFormat);
-const dateFormat = 'YYYY/MM/DD';
+export const dateFormat = 'YYYY/MM/DD';
 
-
-// Filter.propTypes = {
-//     link: PropTypes.string.isRequired,
-//     dropdownTitle: PropTypes.string.isRequired,
-//     linkTitle: PropTypes.string.isRequired,
-//     placeholder: PropTypes.string.isRequired,
-//     loadSearch: PropTypes.bool,
-//     showFilters: PropTypes.arrayOf(PropTypes.string),
-//     searchText: PropTypes.string,
-//     sendFilter: PropTypes.func.isRequired,
-//     useFilter: PropTypes.bool
-// }
-
-const Filter = ({ link, linkTitle, placeholder, loadSearch=false, showFilters=[], searchText="search_text", sendFilter, useFilter=true }) => {
+const Filter = ({ link, defaultValue="", linkTitle, placeholder, loadSearch=false, showFilters=[], searchText="search_text", sendFilter, useFilter=true }) => {
     const [search, setSearch] = useState('')
-    const [filt, setFilt] = useState("")
+    const [filt, setFilt] = useState(defaultValue)
     const [dates, setDates] = useState({
         from: '',
         to: ''

@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from './Layout'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Api, Deleteurl, Geturl } from '../components/Api'
 import { Alerter } from '../components/Utils'
 import { FaArrowLeft } from 'react-icons/fa6'
 import ConfirmModal from '../components/ConfirmModal'
-import moment from 'moment'
 
 const SingleUser = () => {
     const { id } = useParams()
@@ -14,15 +13,12 @@ const SingleUser = () => {
     const [data, setData] = useState({})
     const [view, setView] = useState(false)
     const [loads, setLoads] = useState(false)
-    const [analysis, setAnalysis] = useState([])
 
     useEffect(() => {
         const FetchUsers = async () => {
             setLoading(true)
             try {
                 const res = await Geturl(`${Api.customers.single}/${id}`)
-                const returnData = await Geturl(`${Api.wakashare.user}?customer_id=${id}`)
-                setAnalysis(returnData.comments?.data)
                 return setData(res.data)
             } catch (error) {
                 return Alerter('error', `${error}`)
@@ -59,6 +55,12 @@ const SingleUser = () => {
                 Back
                 </Link>
             </div>
+            <div className="my-10">
+                <div className="flex items-center gap-2">
+                    <Link to={`/users/${id}`} className="py-2 px-5 rounded-md bg-mainblack text-white">Profile</Link>
+                    <Link to={`/users/${id}/steps`} className="py-2 px-5 rounded-md bg-slate-200">Steps</Link>
+                </div>
+            </div>
             {loading && <div className="text-center text-xl mt-10">Loading content...</div> }
           {!loading &&  <div className="grid grid-cols-1 lg:grid-cols-8 gap-3 mt-10">
                 <div className="lg:col-span-2 lg:p-3 w-fit mx-auto">
@@ -93,13 +95,6 @@ const SingleUser = () => {
                         <div className="col-span-2 rounded-lg p-5 capitalize bg-mainyellow">weight</div>
                         <div className="col-span-5 rounded-lg p-5 bg-mainyellow">{data.weight}</div>
                     </div>
-                    <div className="font-bold text-xl mt-6 mb-3">Waka Steps</div>
-                    {analysis.map((item, index) => (
-                        <div className="grid grid-cols-7 gap-3 mb-2.5" key={index}>
-                        <div className="col-span-2 rounded-lg p-2 capitalize">{moment(item.created_at).format('Do MMM YYYY hh:mm a')}</div>
-                        <div className="col-span-5 rounded-lg p-2 font-bold text-xl text-right">{parseFloat(item.steps)?.toLocaleString()}</div>
-                    </div>
-                    ))}
                     <div className="grid grid-cols-7 gap-3 mb-2.5">
                         <div className="col-span-2 rounded-lg p-5 capitalize bg-mainyellow">Make Admin</div>
                         <div className="col-span-5 rounded-lg p-3">

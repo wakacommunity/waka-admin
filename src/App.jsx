@@ -19,6 +19,7 @@ import AllPlans from './pages/Plans/AllPlans'
 import NewPlan from './pages/Plans/NewPlan'
 import EditPlan from './pages/Plans/EditPlan'
 import SendNotification from './pages/SendNotification'
+import SingleUserSteps from './pages/SingleUserSteps'
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='/comments' element={<AdminRoute><Comments /></AdminRoute>} />
         <Route path='/users' element={<AdminRoute><Users /></AdminRoute>} />
         <Route path='/users/:id' element={<AdminRoute><SingleUser /></AdminRoute>} />
+        <Route path='/users/:id/steps' element={<AdminRoute><SingleUserSteps /></AdminRoute>} />
         <Route path='/posts' element={<AdminRoute><Posts /></AdminRoute>} />
         <Route path='/blogs' element={<AdminRoute><Blogs /></AdminRoute>} />
         <Route path='/blogs/new' element={<AdminRoute><CreateBlog /></AdminRoute>} />
