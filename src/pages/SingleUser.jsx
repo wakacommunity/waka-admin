@@ -96,7 +96,7 @@ const SingleUser = () => {
                     <div className="font-bold text-xl mt-6 mb-3">Waka Steps</div>
                     {analysis.map((item, index) => (
                         <div className="grid grid-cols-7 gap-3 mb-2.5" key={index}>
-                        <div className="col-span-2 rounded-lg p-2 capitalize">{moment(item.createdAt).format('Do MMM YYYY')}</div>
+                        <div className="col-span-2 rounded-lg p-2 capitalize">{moment(item.createdAt).format('Do MMM YYYY hh:mm a')}</div>
                         <div className="col-span-5 rounded-lg p-2 font-bold text-xl text-right">{parseFloat(item.steps)?.toLocaleString()}</div>
                     </div>
                     ))}
