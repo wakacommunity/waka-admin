@@ -18,7 +18,7 @@ function SingleUserSteps() {
     const FetchUsers = useCallback(async (tags) => {
         setLoading(true)
         try {
-            const returnData = await Geturl(`${Api.wakashare.user}?customer_id=${id}${tags ? `&search_text=${tags}` : ''}`)
+            const returnData = await Geturl(`${Api.wakashare.user}?customer_id=${id}${tags ? `&date_time=${tags}` : ''}`)
             return setAnalysis(returnData.comments?.data)
         } catch (error) {
             return Alerter('error', `${error}`)
