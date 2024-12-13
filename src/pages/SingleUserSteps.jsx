@@ -34,6 +34,11 @@ function SingleUserSteps() {
         if(!searchtext) return FetchUsers("")
         return FetchUsers(searchtext)
     }
+
+    function ClearFilter() {
+        setSearchText('')
+        return FetchUsers('')
+    }
     return (
         <Layout>
             <div>
@@ -65,6 +70,11 @@ function SingleUserSteps() {
                     <span className="capitalize">filter</span>
                     <img src={img1} alt="" className="w-4" />
                 </button>
+                {searchtext && <button
+                    onClick={ClearFilter}
+                    className="bg-mainblack text-white py-4 px-4 rounded-lg flex w-[10rem] items-center justify-center text-sm gap-3">
+                    <span className="capitalize">Clear filter</span>
+                </button>}
             </div>
             <div className="font-bold text-xl mt-6 mb-3">Waka Steps</div>
             {!loading && analysis.map((item, index) => (
